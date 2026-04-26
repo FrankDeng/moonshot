@@ -1,0 +1,24 @@
+{
+  "tickers": [
+    "AAPL US Equity",
+    "MSFT US Equity"
+  ],
+  "macro_tickers": [
+    "NFP TCH Index",
+    "M2% YOY Index",
+    "GDP CYOY Index"
+  ],
+  "price_fields": [
+    "PX_LAST"
+  ],
+  "macro_fields": [
+    "PX_LAST",
+    "ECO_RELEASE_DT",
+    "BN_SURVEY_MEDIAN",
+    "BN_SURVEY_AVERAGE",
+    "BN_SURVEY_HIGH",
+    "BN_SURVEY_LOW"
+  ],
+  "start-date": "2015-01-01",
+  "end-date": "2026-04-24"
+}

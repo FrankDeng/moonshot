@@ -1,0 +1,48 @@
+name: Run Macro Workflow Daily
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every day at 00:10 Beijing time (UTC 16:10 previous day)
+    - cron: "10 16 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  run-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run macro workflow
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          python macro_workflow_runner.py --workflow macro_workflow_example.json --output-dir .
+
+      - name: Commit updated outputs
+        run: |
+          git add outputs/*.html outputs/*.csv || true
+          if git diff --staged --quiet; then
+            echo "No output changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: update macro workflow outputs"
+          git push

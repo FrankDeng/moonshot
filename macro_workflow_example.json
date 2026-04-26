@@ -1,0 +1,34 @@
+{
+  "name": "macro-cycle-batch",
+  "connection": {
+    "neon_config_path": "neon_connection_string.json"
+  },
+  "defaults": {
+    "output": {
+      "dir": "outputs"
+    },
+    "diff": {
+      "left_source": "macro_data_revisions",
+      "right_source": "macro_data_revisions",
+      "left_date_col": "eco_release_dt",
+      "right_date_col": "eco_release_dt",
+      "left_value_col": "px_last",
+      "right_value_col": "px_last",
+      "start": "2010-01-01"
+    },
+    "cycle": {
+      "period_months": 24,
+      "winsor_q": 0.95,
+      "smooth_span": 3,
+      "hysteresis_band": 0.05
+    }
+  },
+
+  "jobs": [
+    {
+      "id": "m2_vs_gdp",
+      "left": "M2% YOY Index",
+      "right": "GDP CYOY Index"
+    }
+  ]
+}

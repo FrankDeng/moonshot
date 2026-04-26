@@ -1,0 +1,15 @@
+numpy
+pandas
+plotly
+psycopg2-binary
+sktime
+matplotlib
+fastapi
+modal
+requests
+langchain-text-splitters
+sentence-transformers
+torch
+pdblp
+joblib
+openpyxl
