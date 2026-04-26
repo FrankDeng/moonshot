@@ -13,3 +13,4 @@ torch
 pdblp
 joblib
 openpyxl
+requests-oauthlib

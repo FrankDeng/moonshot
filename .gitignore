@@ -1,4 +1,5 @@
 neon_connection_string.json
+X_connection_string.json
 outputs/
 __pycache__/
 *.pyc

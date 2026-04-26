@@ -5,7 +5,26 @@
   },
   "defaults": {
     "output": {
-      "dir": "outputs"
+      "dir": "outputs",
+      "pages": {
+        "enabled": true
+      }
+    },
+    "ai": {
+      "enabled": true,
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "model": "deepseek-chat",
+      "base_url": "https://api.deepseek.com",
+      "temperature": 0.2,
+      "max_tokens": 1200,
+      "max_rows": 80
+    },
+    "publish": {
+      "enabled": false,
+      "channels": [
+        "x"
+      ],
+      "dry_run": true
     },
     "diff": {
       "left_source": "macro_data_revisions",
@@ -27,8 +46,16 @@
   "jobs": [
     {
       "id": "m2_vs_gdp",
+      "indicator_name": "m2_vs_gdp_cycle_indicator",
+      "description": "M2增速与GDP增速剪刀差，用于观察资金供给与实体需求错配程度，以及评估流向金融市场的资金水平高低。",
       "left": "M2% YOY Index",
-      "right": "GDP CYOY Index"
+      "right": "GDP CYOY Index",
+      "analyze_with_deepseek": true,
+      "publish": {
+        "enabled": false,
+        "channels": ["x"],
+        "dry_run": true
+      }
     }
   ]
 }
